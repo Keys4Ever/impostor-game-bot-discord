@@ -61,19 +61,12 @@ const CLIENT_ID = process.env.CLIENT_ID;
             return;
         }
 
-        console.log('Started refreshing application (/) commands.');
+        console.log('Started refreshing application (/) commands globally...');
+        console.log('Note: Global commands may take up to 1 hour to propagate to all servers.');
 
-        const GUILD_ID = process.env.GUILD_ID;
+        await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
 
-        if (GUILD_ID) {
-            console.log(`Registering commands to Guild: ${GUILD_ID}`);
-            await rest.put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands });
-        } else {
-            console.log('Registering Global Commands (may take up to 1 hour to update)...');
-            await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
-        }
-
-        console.log('Successfully reloaded application (/) commands.');
+        console.log('Successfully reloaded global application (/) commands.');
     } catch (error) {
         console.error(error);
     }
