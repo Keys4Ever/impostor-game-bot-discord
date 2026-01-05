@@ -10,10 +10,10 @@ const commands = [
         .setDescription('Impostor Game Commands')
         .addSubcommand(sub =>
             sub.setName('start')
-                .setDescription('Start a new game')
+                .setDescription('Iniciar un nuevo juego')
                 .addStringOption(option =>
-                    option.setName('mode')
-                        .setDescription('Game Mode (MULTI or LOCAL)')
+                    option.setName('modo')
+                        .setDescription('Modo de juego (MULTI o LOCAL)')
                         .setRequired(true)
                         .addChoices(
                             { name: 'Multiplayer', value: 'MULTI' },
@@ -21,8 +21,8 @@ const commands = [
                         )
                 )
                 .addIntegerOption(option =>
-                    option.setName('players')
-                        .setDescription('Number of players (Required for LOCAL)')
+                    option.setName('jugadores')
+                        .setDescription('Número de jugadores (Requerido para LOCAL)')
                         .setRequired(false)
                         .setMinValue(3)
                         .setMaxValue(20)
@@ -30,20 +30,20 @@ const commands = [
         )
         .addSubcommand(sub =>
             sub.setName('word')
-                .setDescription('Manage words')
+                .setDescription('Gestionar palabras')
                 .addStringOption(option =>
                     option.setName('action')
-                        .setDescription('Action: list, add, delete')
+                        .setDescription('Acción: mostrar todas, añadir, eliminar')
                         .setRequired(true)
                         .addChoices(
-                            { name: 'List', value: 'list' },
-                            { name: 'Add', value: 'add' },
-                            { name: 'Delete', value: 'delete' }
+                            { name: 'Mostrar todas', value: 'list' },
+                            { name: 'Añadir', value: 'add' },
+                            { name: 'Eliminar', value: 'delete' }
                         )
                 )
                 .addStringOption(option =>
-                    option.setName('text')
-                        .setDescription('Word text (for add)')
+                    option.setName('palabra')
+                        .setDescription('Palabra a añadir')
                         .setRequired(false)
                 )
         )

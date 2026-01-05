@@ -24,9 +24,9 @@ export interface GameSession {
     guildId: string;
     mode: GameMode;
     state: GameState;
-    players: Player[]; // All players in the session
+    players: Player[];
     alivePlayers: Set<string>; // userIds of players who are still alive
-    word: string; // The secret word for this game
+    word: string;
     votes: Map<string, string>; // voterUserId -> targetUserId
     currentPlayerIndex?: number; // For LOCAL mode
     hostId: string; // Who started the game

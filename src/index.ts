@@ -23,9 +23,9 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
     try {
         await InteractionHandler.handle(interaction);
     } catch (error) {
-        console.error('Interaction Error:', error);
+        console.error('Error al procesar la interacción:', error);
         if (interaction.isRepliable()) {
-            const reply = { content: 'An error occurred while processing your request.', ephemeral: true };
+            const reply = { content: 'Error al procesar tu solicitud.', ephemeral: true };
             if (interaction.deferred || interaction.replied) {
                 await interaction.followUp(reply);
             } else {
