@@ -90,7 +90,7 @@ export class CommandHandler {
 
     private static async handleWord(interaction: ChatInputCommandInteraction): Promise<void> {
         const action = interaction.options.getString('action');
-        const text = interaction.options.getString('text');
+        const text = interaction.options.getString('palabra');
 
         if (!action) {
             await interaction.reply({ content: Messages.ERRors.ACTION_REQUIRED, ephemeral: true });
