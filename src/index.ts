@@ -12,7 +12,6 @@ const client = new Client({
     ]
 });
 
-console.log('TOKEN:', process.env.DISCORD_TOKEN);
 const TOKEN = process.env.DISCORD_TOKEN;
 
 client.once(Events.ClientReady, c => {
