@@ -39,7 +39,7 @@ export class WordService {
         const words = await prisma.word.findMany({
             where: guildId ? { OR: [{ guildId }, { guildId: null }] } : {}
         });
-        if (words.length === 0) return "No words found.";
+        if (words.length === 0) return "No hay palabras.";
         return words.map((w: any) => `${w.id}: ${w.text}`).join('\n');
     }
 }

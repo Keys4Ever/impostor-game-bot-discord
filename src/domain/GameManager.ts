@@ -49,8 +49,7 @@ export class GameManager {
         if (!session) throw new Error('Session not found');
         if (session.state !== GameState.START) throw new Error('Cannot join game in progress');
         if (session.players.some(p => p.userId === player.userId)) {
-            // Player already joined, maybe just update?
-            return;
+            throw new Error('Player already joined');
         }
         session.players.push(player);
     }

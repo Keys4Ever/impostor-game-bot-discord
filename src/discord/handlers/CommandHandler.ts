@@ -2,7 +2,7 @@ import { ChatInputCommandInteraction } from 'discord.js';
 import { GameManager } from '../../domain/GameManager';
 import { GameMode } from '../../domain/types';
 import { WordService } from '../../services/WordService';
-import { CustomIds, Messages } from '../constants';
+import { Messages } from '../constants';
 import { UIFactory } from '../ui/UIFactory';
 
 export class CommandHandler {
@@ -21,7 +21,8 @@ export class CommandHandler {
     }
 
     private static async handleStart(interaction: ChatInputCommandInteraction): Promise<void> {
-        const modeInput = interaction.options.getString('mode')?.toUpperCase();
+        // Option names must match deploy-commands.ts (`modo`, `jugadores`)
+        const modeInput = interaction.options.getString('modo')?.toUpperCase();
         if (modeInput !== 'MULTI' && modeInput !== 'LOCAL') {
             await interaction.reply({ content: Messages.ERRors.INVALID_MODE, ephemeral: true });
             return;
@@ -40,7 +41,6 @@ export class CommandHandler {
                 return;
             }
 
-            // Create Session
             gameManager.createSession(interaction.channelId, interaction.guildId, interaction.user.id, mode);
 
             if (mode === 'MULTI') {
@@ -58,19 +58,17 @@ export class CommandHandler {
                 });
 
             } else {
-                // LOCAL MODE
-                const count = interaction.options.getInteger('players');
+                const count = interaction.options.getInteger('jugadores');
                 if (!count) {
                     gameManager.deleteSession(interaction.channelId);
-                    await interaction.reply({ content: 'Para el modo LOCAL, debes especificar "players" (3-20).', ephemeral: true });
+                    await interaction.reply({ content: 'Para el modo Local, debes especificar "jugadores" (3-20).', ephemeral: true });
                     return;
                 }
 
-                // Create N placeholder players
                 for (let i = 0; i < count; i++) {
                     gameManager.addPlayer(interaction.channelId, {
                         userId: `local-p-${i}`,
-                        role: 'INOCENTS', // Placeholder
+                        role: 'INOCENTS',
                         hasSeenRole: false,
                         name: `Player ${i + 1}`
                     });

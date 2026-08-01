@@ -15,21 +15,21 @@ export const CustomIds = {
 
 export const Messages = {
     ERRors: {
-        INVALID_MODE: 'Invalid mode. Use MULTI or LOCAL.',
-        CANNOT_START_HERE: 'Cannot start game here.',
-        GAME_ALREADY_RUNNING: 'A game is already running in this channel.',
+        INVALID_MODE: 'Modo inválido. Usá Multiplayer o Local.',
+        CANNOT_START_HERE: 'No se puede iniciar una partida aquí.',
+        GAME_ALREADY_RUNNING: 'Ya hay una partida en curso en este canal.',
         NO_ACTIVE_GAME: 'No hay una partida activa en este canal.',
         ALREADY_JOINED: 'Ya estás en la partida.',
         HOST_ONLY: 'Solo el host puede iniciar.',
         NEED_MORE_PLAYERS: 'Se necesitan al menos 3 jugadores.',
-        SESSION_EXPIRED: 'Session expired.',
+        SESSION_EXPIRED: 'La sesión expiró.',
         ACTION_REQUIRED: 'Acción requerida.',
         TEXT_REQUIRED: 'Debes especificar el texto.',
         ID_REQUIRED: 'Debes especificar el ID de la palabra a eliminar.',
         UNKNOWN_ACTION: 'Acción desconocida.',
         ONLY_HOST_VOTE: 'Solo el host puede gestionar la votación.',
         VOTING_ERROR: 'Error al votar:',
-        DEAD_VOTE: 'Cannot vote for dead player'
+        DEAD_VOTE: 'No se puede votar por un jugador eliminado.'
     },
     Game: {
         NEW_GAME_MULTI: (hostId: string) => `**NUEVA PARTIDA: MULTI**\nHost: <@${hostId}>\nJugadores: `,

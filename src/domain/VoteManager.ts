@@ -20,14 +20,17 @@ export interface RoundResult {
 export class VoteManager {
     static castVote(session: GameSession, voterId: string, targetId: string): void {
         if (session.state !== GameState.VOTING) {
-            throw new Error('Voting is not active');
+            throw new Error('La votación no está activa');
         }
         if (!session.alivePlayers.has(voterId)) {
-            throw new Error('Only alive players can vote');
+            throw new Error('Solo los jugadores vivos pueden votar');
         }
-        if (!session.players.some(p => p.userId === targetId)) {
-            if (!session.alivePlayers.has(targetId) && targetId !== 'SKIP') {
-                throw new Error('Cannot vote for dead player');
+        if (targetId !== 'SKIP') {
+            if (!session.players.some(p => p.userId === targetId)) {
+                throw new Error('Jugador inválido');
+            }
+            if (!session.alivePlayers.has(targetId)) {
+                throw new Error('No se puede votar por un jugador eliminado');
             }
         }
 
